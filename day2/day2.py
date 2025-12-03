@@ -3,6 +3,8 @@ from typing import List, Tuple
 
 def check_if_repetition(id_to_test: int) -> bool:
     str_id = str(id_to_test)
+    if len(str_id) % 2 > 0:
+        return False
     if str_id[0] == str_id[1]:
         return True
     else:

@@ -33,3 +33,12 @@ class TestDay2:
         actual = extract_sides(input_range)
         # THEN
         assert actual == expected
+
+    def test_find_replication_inside_range(self):
+        # GIVEN
+        input_range = '95-115'
+        expected = [99]
+        # WHEN
+        actual = search_invalid(input_range)
+        # THEN
+        assert actual == expected
