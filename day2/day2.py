@@ -1,8 +1,9 @@
-from typing import List
+from typing import List, Tuple
 
 
-def check_if_repetition(id_to_test: str) -> bool:
-    if id_to_test[0] == id_to_test[1]:
+def check_if_repetition(id_to_test: int) -> bool:
+    str_id = str(id_to_test)
+    if str_id[0] == str_id[1]:
         return True
     else:
         return False
@@ -10,7 +11,13 @@ def check_if_repetition(id_to_test: str) -> bool:
 
 def search_invalid(input_range: str) -> List[str]:
     output_list = []
-    for id_to_test in input_range.split('-'):
+    start, end = extract_sides(input_range)
+    for id_to_test in range(start, end + 1):
         if check_if_repetition(id_to_test):
             output_list.append(int(id_to_test))
     return output_list
+
+
+def extract_sides(input_range: str) -> Tuple[int, int]:
+    start, end = input_range.split('-')
+    return int(start), int(end)
