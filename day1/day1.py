@@ -1,0 +1,59 @@
+from pathlib import Path
+from typing import List, Tuple
+
+from utils import import_text
+
+
+class Dial:
+    def __init__(self, starting_pos: int):
+        self.current_pos = starting_pos
+        self.size = 100
+
+    @property
+    def pos(self):
+        return self.current_pos
+
+    def rotate(self, input_command: str) -> int:
+        direction, distance = self._extract_command(input_command)
+        new_pos = None
+        match direction:
+            case 'R':
+                new_pos = self.current_pos + distance
+            case 'L':
+                new_pos = self.current_pos - distance
+            case _:
+                raise ValueError('Invalid direction')
+        self.current_pos = self._check_full_turn(new_pos)
+        return self._check_if_at_0_pos(self.current_pos)
+
+    def full_process(self, input_command: List[str]) -> int:
+        final_score = 0
+        for command in input_command:
+            if self.rotate(command):
+                final_score += 1
+        return final_score
+
+    @staticmethod
+    def _extract_command(input_command) -> Tuple[str, int]:
+        return input_command[0], int(input_command[1:])
+
+    @staticmethod
+    def _check_if_at_0_pos(current_pos: int) -> bool:
+        return current_pos == 0
+
+    def _check_full_turn(self, new_pos: int) -> int:
+        if new_pos is None:
+            raise ValueError('new_pos is None')
+        if new_pos < 0:
+            return self.size + new_pos
+        elif new_pos >= self.size:
+            return new_pos - self.size
+        else:
+            return new_pos
+
+
+if __name__ == '__main__':
+    # test_list = ['L68', 'L30', 'R48', 'L5', 'R60', 'L55', 'L1', 'L99', 'R14', 'L82']
+    list_input = import_text(Path('day1.txt'))
+    dial = Dial(50)
+    print(f'final_score: {dial.full_process(list_input)}')
