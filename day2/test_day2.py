@@ -14,9 +14,10 @@ class TestDay2:
         assert actual == expected
 
     @pytest.mark.parametrize('input_id, expected', [
-        ('11', True),
-        ('22', True),
-        ('99', True),
+        (11, True),
+        (22, True),
+        (99, True),
+        (1010, True),
     ])
     def test_check_if_repetition(self, input_id, expected):
         # GIVEN

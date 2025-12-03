@@ -5,10 +5,12 @@ def check_if_repetition(id_to_test: int) -> bool:
     str_id = str(id_to_test)
     if len(str_id) % 2 > 0:
         return False
-    if str_id[0] == str_id[1]:
-        return True
     else:
-        return False
+        middle = len(str_id) // 2
+        if str_id[:middle] == str_id[middle:]:
+            return True
+        else:
+            return False
 
 
 def search_invalid(input_range: str) -> List[str]:
