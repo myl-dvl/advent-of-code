@@ -1,6 +1,6 @@
 import pytest
 
-from day2.day2 import search_invalid, check_if_repetition, extract_sides
+from day2.day2 import search_invalid, check_if_repetition, extract_sides, compute_input
 
 
 class TestDay2:
@@ -54,5 +54,16 @@ class TestDay2:
         expected = []
         # WHEN
         actual = search_invalid(input_range)
+        # THEN
+        assert actual == expected
+
+    def test_sum_of_replication_ids(self):
+        # GIVEN
+        input_str = """11-22,95-115,998-1012,1188511880-1188511890,222220-222224,
+        1698522-1698528,446443-446449,38593856-38593862,565653-565659,
+        824824821-824824827,2121212118-2121212124"""
+        expected = 1227775554
+        # WHEN
+        actual = compute_input(input_str)
         # THEN
         assert actual == expected

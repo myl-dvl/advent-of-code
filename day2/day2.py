@@ -13,7 +13,7 @@ def check_if_repetition(id_to_test: int) -> bool:
             return False
 
 
-def search_invalid(input_range: str) -> List[str]:
+def search_invalid(input_range: str) -> List[int]:
     output_list = []
     start, end = extract_sides(input_range)
     for id_to_test in range(start, end + 1):
@@ -25,3 +25,10 @@ def search_invalid(input_range: str) -> List[str]:
 def extract_sides(input_range: str) -> Tuple[int, int]:
     start, end = input_range.split('-')
     return int(start), int(end)
+
+def compute_input(input_str: str) -> int:
+    count = 0
+    for range_str in input_str.split(','):
+        list_invalid = search_invalid(range_str)
+        count += sum(list_invalid)
+    return count
