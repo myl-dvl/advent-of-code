@@ -2,7 +2,10 @@ from typing import List
 
 
 def check_if_repetition(id_to_test: str) -> bool:
-    return True
+    if id_to_test[0] == id_to_test[1]:
+        return True
+    else:
+        return False
 
 
 def search_invalid(input_range: str) -> List[str]:
