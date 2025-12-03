@@ -18,6 +18,10 @@ class TestDay2:
         (22, True),
         (99, True),
         (1010, True),
+        (1188511885, True),
+        (222222, True),
+        (446446, True),
+        (38593859, True),
     ])
     def test_check_if_repetition(self, input_id, expected):
         # GIVEN
@@ -39,6 +43,15 @@ class TestDay2:
         # GIVEN
         input_range = '95-115'
         expected = [99]
+        # WHEN
+        actual = search_invalid(input_range)
+        # THEN
+        assert actual == expected
+
+    def test_no_replication_inside_range(self):
+        # GIVEN
+        input_range = '1698522-1698528'
+        expected = []
         # WHEN
         actual = search_invalid(input_range)
         # THEN
