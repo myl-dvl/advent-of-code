@@ -97,3 +97,21 @@ class TestDay1:
         actual = dial.full_process(list_input)
         # THEN
         assert actual == expected
+
+    def test_case_multiple_turns_in_one_go(self, dial):
+        # GIVEN
+        input_command = 'R950'
+        expected = True
+        # WHEN
+        actual = dial.rotate(input_command)
+        # THEN
+        assert actual == expected
+
+    def test_remove_extra_turn(self):
+        # GIVEN
+        expected = 50
+        input_distance = 950
+        # WHEN
+        actual = Dial._remove_extra_turn(input_distance)
+        # THEN
+        assert actual == expected

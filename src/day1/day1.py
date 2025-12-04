@@ -15,6 +15,7 @@ class Dial:
 
     def rotate(self, input_command: str) -> int:
         direction, distance = self._extract_command(input_command)
+        distance = self._remove_extra_turn(distance)
         new_pos = None
         match direction:
             case 'R':
@@ -50,6 +51,14 @@ class Dial:
             return new_pos - self.size
         else:
             return new_pos
+
+    @staticmethod
+    def _remove_extra_turn(distance: int) -> int:
+        if distance > 100:
+            distance_str = str(distance)
+            return int(distance_str[-2:])
+        else:
+            return distance
 
 
 if __name__ == '__main__':
