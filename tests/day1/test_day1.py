@@ -107,11 +107,11 @@ class TestDay1:
         # THEN
         assert actual == expected
 
-    def test_remove_extra_turn(self):
+    def test_remove_extra_turn(self, dial):
         # GIVEN
         expected = 50
         input_distance = 950
         # WHEN
-        actual = Dial._remove_extra_turn(input_distance)
+        actual = dial._remove_extra_turn(input_distance)
         # THEN
         assert actual == expected
