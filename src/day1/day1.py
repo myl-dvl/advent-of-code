@@ -54,6 +54,6 @@ class Dial:
 
 if __name__ == '__main__':
     # test_list = ['L68', 'L30', 'R48', 'L5', 'R60', 'L55', 'L1', 'L99', 'R14', 'L82']
-    list_input = import_text(Path('day1.txt'))
+    list_input = import_text(Path('../../input/day1.txt'))
     dial = Dial(50)
     print(f'final_score: {dial.full_process(list_input)}')

@@ -39,6 +39,6 @@ def compute_input(input_str: str) -> int:
 
 
 if __name__ == '__main__':
-    input_str = import_text(Path('day2.txt'))
+    input_str = import_text(Path('../../input/day2.txt'))
     print(f'Sum replication ids: {compute_input(input_str[0])}')
     # 22062284697
