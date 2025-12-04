@@ -15,6 +15,8 @@ class Dial:
 
     def rotate(self, input_command: str) -> int:
         direction, distance = self._extract_command(input_command)
+        extra_rotations = self._count_extra_rotations(distance)
+        distance = distance - extra_rotations * self.size
         new_pos = None
         match direction:
             case 'R':
@@ -33,8 +35,9 @@ class Dial:
                 final_score += 1
         return final_score
 
-    def _extract_command(self, input_command) -> Tuple[str, int]:
-        return input_command[0], self._remove_extra_turn(int(input_command[1:]))
+    @staticmethod
+    def _extract_command(input_command) -> Tuple[str, int]:
+        return input_command[0], int(input_command[1:])
 
     @staticmethod
     def _check_if_at_0_pos(current_pos: int) -> bool:
@@ -50,12 +53,13 @@ class Dial:
         else:
             return new_pos
 
-    def _remove_extra_turn(self, distance: int) -> int:
-        if distance > self.size:
-            distance_str = str(distance)
-            return int(distance_str[-2:])
-        else:
-            return distance
+    @staticmethod
+    def _count_extra_rotations(distance: int) -> int:
+        distance_str = str(distance)
+        if len(distance_str) <= 2:
+            return 0
+        n_extra_rotations_str = distance_str[:-2]
+        return int(n_extra_rotations_str)
 
 
 if __name__ == '__main__':

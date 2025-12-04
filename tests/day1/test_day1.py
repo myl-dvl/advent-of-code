@@ -107,11 +107,20 @@ class TestDay1:
         # THEN
         assert actual == expected
 
-    def test_remove_extra_turn(self, dial):
+    def test_count_extra_rotations(self, dial):
         # GIVEN
-        expected = 50
+        expected = 9
         input_distance = 950
         # WHEN
-        actual = dial._remove_extra_turn(input_distance)
+        actual = dial._count_extra_rotations(input_distance)
+        # THEN
+        assert actual == expected
+
+    def test_no_extra_rotation(self, dial):
+        # GIVEN
+        expected = 0
+        input_distance = 50
+        # WHEN
+        actual = dial._count_extra_rotations(input_distance)
         # THEN
         assert actual == expected
