@@ -145,3 +145,13 @@ class TestPart2:
         actual = dial.rotate(command)
         # THEN
         assert actual == expected
+
+    def test_big_distance(self, dial):
+        # GIVEN
+        command = 'R1000'
+        expected = 10
+        # WHEN
+        actual = dial.rotate(command)
+        # THEN
+        assert actual == expected
+        assert dial.pos == 50
