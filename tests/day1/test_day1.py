@@ -92,7 +92,7 @@ class TestDay1:
     def test_validation(self, dial):
         # GIVEN
         list_input = ['L68', 'L30', 'R48', 'L5', 'R60', 'L55', 'L1', 'L99', 'R14', 'L82']
-        expected = 3
+        expected = 6
         # WHEN
         actual = dial.full_process(list_input)
         # THEN
@@ -101,7 +101,7 @@ class TestDay1:
     def test_case_multiple_turns_in_one_go(self, dial):
         # GIVEN
         input_command = 'R950'
-        expected = True
+        expected = 10
         # WHEN
         actual = dial.rotate(input_command)
         # THEN
@@ -122,5 +122,26 @@ class TestDay1:
         input_distance = 50
         # WHEN
         actual = dial._count_extra_rotations(input_distance)
+        # THEN
+        assert actual == expected
+
+
+class TestPart2:
+    def test_goes_through_zero(self, dial):
+        # GIVEN
+        expected = 1
+        command = 'L68'
+        # WHEN
+        actual = dial.rotate(command)
+        # THEN
+        assert actual == expected
+
+    def test_move_left_from_zero(self):
+        # GIVEN
+        expected = 0
+        dial = Dial(0)
+        command = 'R5'
+        # WHEN
+        actual = dial.rotate(command)
         # THEN
         assert actual == expected

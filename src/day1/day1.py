@@ -25,8 +25,12 @@ class Dial:
                 new_pos = self.current_pos - distance
             case _:
                 raise ValueError('Invalid direction')
-        self.current_pos = self._check_full_turn(new_pos)
-        return self._check_if_at_0_pos(self.current_pos)
+        if new_pos <= 0 or new_pos >= self.size:
+            if self.current_pos != 0:
+                extra_rotations += 1
+            new_pos = self._correct_pos(new_pos)
+        self.current_pos = new_pos
+        return extra_rotations
 
     def full_process(self, input_command: List[str]) -> int:
         final_score = 0
@@ -43,16 +47,6 @@ class Dial:
     def _check_if_at_0_pos(current_pos: int) -> bool:
         return current_pos == 0
 
-    def _check_full_turn(self, new_pos: int) -> int:
-        if new_pos is None:
-            raise ValueError('new_pos is None')
-        if new_pos < 0:
-            return self.size + new_pos
-        elif new_pos >= self.size:
-            return new_pos - self.size
-        else:
-            return new_pos
-
     @staticmethod
     def _count_extra_rotations(distance: int) -> int:
         distance_str = str(distance)
@@ -60,6 +54,14 @@ class Dial:
             return 0
         n_extra_rotations_str = distance_str[:-2]
         return int(n_extra_rotations_str)
+
+    def _correct_pos(self, new_pos: int) -> int:
+        if new_pos < 0:
+            return self.size + new_pos
+        elif new_pos >= self.size:
+            return new_pos - self.size
+        else:
+            return new_pos
 
 
 if __name__ == '__main__':
