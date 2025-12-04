@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import List, Tuple
 
-from utils import import_text
+from src.utils import import_text
 
 
 class Dial:

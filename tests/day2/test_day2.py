@@ -1,6 +1,6 @@
 import pytest
 
-from day2.day2 import search_invalid, check_if_repetition, extract_sides, compute_input
+from src.day2.day2 import search_invalid, check_if_repetition, extract_sides, compute_input
 
 
 class TestDay2:
@@ -65,5 +65,25 @@ class TestDay2:
         expected = 1227775554
         # WHEN
         actual = compute_input(input_str)
+        # THEN
+        assert actual == expected
+
+@pytest.mark.skip(reason='Not implemented yet')
+class TestPart2:
+    @pytest.mark.parametrize('input_id, expected', [
+        (11, True),
+        (22, True),
+        (99, True),
+        (111, True),
+        (1010, True),
+        (1188511885, True),
+        (222222, True),
+        (446446, True),
+        (38593859, True),
+    ])
+    def test_new_ids(self, input_id, expected):
+        # GIVEN
+        # WHEN
+        actual = check_if_repetition(input_id)
         # THEN
         assert actual == expected

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from utils import extract_text, import_text
+from src.utils import extract_text, import_text
 
 
 def test_extract_text():
@@ -25,7 +25,7 @@ def test_extract_text():
 
 def test_import_text():
     # GIVEN
-    input_path = Path('test.txt')
+    input_path = Path('tests/test.txt')
     expected = ['L68', 'L30', 'R48', 'L5', 'R60', 'L55', 'L1', 'L99', 'R14', 'L82']
     # WHEN
     actual = import_text(input_path)

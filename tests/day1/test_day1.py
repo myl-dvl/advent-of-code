@@ -1,6 +1,6 @@
 import pytest
 
-from day1 import Dial
+from src.day1.day1 import Dial
 
 
 @pytest.fixture
