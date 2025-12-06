@@ -80,10 +80,10 @@ class TestDay1:
         actual = dial.pos
         assert actual == expected
 
-    def test_count_when_zero(self, dial):
+    def test_count_when_goes_through_zero(self, dial):
         # GIVEN
         list_input = ['R50', 'L5', 'R10']
-        expected = 1
+        expected = 2
         # WHEN
         actual = dial.full_process(list_input)
         # THEN
@@ -136,11 +136,11 @@ class TestPart2:
         # THEN
         assert actual == expected
 
-    def test_move_left_from_zero(self):
+    def test_move_from_zero(self):
         # GIVEN
         expected = 0
         dial = Dial(0)
-        command = 'R5'
+        command = 'L5'
         # WHEN
         actual = dial.rotate(command)
         # THEN
@@ -148,10 +148,10 @@ class TestPart2:
 
     def test_big_distance(self, dial):
         # GIVEN
-        command = 'R1000'
+        command = ['R1000']
         expected = 10
         # WHEN
-        actual = dial.rotate(command)
+        actual = dial.full_process(command)
         # THEN
         assert actual == expected
         assert dial.pos == 50

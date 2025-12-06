@@ -35,8 +35,8 @@ class Dial:
     def full_process(self, input_command: List[str]) -> int:
         final_score = 0
         for command in input_command:
-            if self.rotate(command):
-                final_score += 1
+            n_rotation = self.rotate(command)
+            final_score += n_rotation
         return final_score
 
     @staticmethod
